@@ -1,33 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField, Paper, Box, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { display } from "@mui/system";
-
-const CustomPaper = styled(Paper)({
-  marginTop: 60,
-  marginBottom: 40,
-  marginLeft: 160,
-  marginRight: 160
-});
+import CustomPaper from "components/customUI/CustomPaper";
+import Markdown from "components/Markdown";
 
 const CustomButton = styled(Button)({
   marginRight: 10,
-  marignLeft: 10
-})
+  marignLeft: 10,
+});
 
 const Create = () => {
+  const [contents, setContents] = useState();
+  const setData = (e: any) => {
+    e.preventDefault();
+    setContents(e.target.value);
+  };
   return (
     <>
       <CustomPaper elevation={3}>
-        <Box py={6} px={12}>
-          <TextField placeholder="タイトル" fullWidth required />
-          <Box my={2} />
-          <TextField placeholder="aaaa" multiline fullWidth rows={8} />
-        </Box>
+        <TextField placeholder="タイトル" fullWidth required />
+        <TextField
+          placeholder="Markdownで入力できます。"
+          multiline
+          fullWidth
+          rows={8}
+          onChange={setData}
+        />
+        <Markdown contents={contents} />
       </CustomPaper>
-      <Box sx={{display: 'flex', justifyContent: 'center'}}>
-        <CustomButton variant="contained" color="secondary">破棄</CustomButton>
-        <CustomButton variant="contained" color="info">追加</CustomButton>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <CustomButton variant="contained" color="secondary">
+          破棄
+        </CustomButton>
+        <CustomButton variant="contained" color="info">
+          追加
+        </CustomButton>
       </Box>
     </>
   );
