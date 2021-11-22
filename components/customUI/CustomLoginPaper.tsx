@@ -1,6 +1,5 @@
 import { Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import styles from "styles/Home.module.css";
 
 const CustomLoginPaper = styled(Paper)({
   width: 500,

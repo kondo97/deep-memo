@@ -1,12 +1,14 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 import CustomPaper from "components/customUI/CustomPaper";
+import ArrowTop from "components/ArrowTop";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 
 const Post = () => {
   return (
     <>
+      <ArrowTop />
       <CustomPaper elevation={3}>
         <Typography
           variant="h4"
