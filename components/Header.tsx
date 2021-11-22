@@ -2,11 +2,12 @@ import React from "react";
 import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 import Link from "next/link";
 import styles from 'styles/Home.module.css'
+import CustomButton from "components/customUI/CustomButton";
 
 export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" className={styles.headerColor}>
         <Toolbar>
           <Link href="/" passHref>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className={styles.pointer}>
@@ -14,9 +15,9 @@ export default function Header() {
             </Typography>
           </Link>
           <Link href="/front/create" passHref>
-            <Button variant="contained" color="secondary">新規作成</Button>
+            <CustomButton variant="contained" color="primary">新規作成</CustomButton>
           </Link>
-          <Button variant="contained" color="success" className={styles.lowercase}>Logout</Button>
+          <CustomButton variant="contained" color="secondary">ログアウト</CustomButton>
         </Toolbar>
       </AppBar>
     </Box>

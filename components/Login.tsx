@@ -62,7 +62,7 @@ const Login = (props: Props) => {
             )}
           </Box>
           <Box mt={6} sx={{ textAlign: "center" }}>
-            <Button type="submit" variant="contained" color="secondary">
+            <Button type="submit" variant="contained" color="primary">
               {props.name}
             </Button>
           </Box>
