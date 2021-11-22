@@ -4,72 +4,85 @@ import { styled } from "@mui/material/styles";
 import CustomPaper from "components/customUI/CustomPaper";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
+import { useForm } from "react-hook-form";
+import styles from "styles/Home.module.css";
 
 const CustomButton = styled(Button)({
   marginRight: 10,
   marignLeft: 10,
 });
 
-var Showdown  = require('showdown')
+var Showdown = require("showdown");
 const converter = new Showdown.Converter({
   tables: true,
   simplifiedAutoLink: true,
   strikethrough: true,
-  tasklists: true
+  tasklists: true,
 });
 
 const Create = () => {
-  const [title, setTitle] = useState("");
-  const setDataTitle = (e: any) => {
+  const [title, setTitle] = useState<string>("");
+  const setDataTitle = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     e.preventDefault();
     setTitle(e.target.value);
   };
-  const [contents, setContents] = useState("");
-  const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-    "write"
-  );
+  const [contents, setContents] = useState<string>("");
+  const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
+
+  //フォーム
+  type Post = {
+    title: string;
+    contents: string;
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Post>();
+  const titleField = register("title", { required: true, maxLength: 20 });
+  const onSubmit = () => {
+    console.log(title);
+    console.log(contents);
+  };
+
   return (
     <>
       <CustomPaper elevation={3}>
-        {/* <Grid container spacing={2}>
-          <Grid item xs={6}> */}
-        <TextField
-          placeholder="タイトル"
-          fullWidth
-          required
-          onChange={setDataTitle}
-        />
-        {/* <TextField
-              placeholder="Markdownで入力できます。"
-              multiline
-              fullWidth
-              rows={8}
-              onChange={setDataContents}
-            /> */}
-        {/* <ReactMde value={contents} onChange={setContents} />
-          </Grid>
-          <Grid item xs={6}>
-            <Markdown contents={contents} title={title} />
-          </Grid>
-        </Grid> */}
-        <ReactMde
-          value={contents}
-          onChange={setContents}
-          selectedTab={selectedTab}
-          onTabChange={setSelectedTab}
-          generateMarkdownPreview={(markdown) =>
-            Promise.resolve(converter.makeHtml(markdown))
-          }
-        />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            placeholder="タイトル"
+            fullWidth
+            {...titleField}
+            onChange={(e) => {
+              titleField.onChange(e);
+              setDataTitle(e);
+            }}
+            required
+          />
+          <Box sx={{textAlign: 'right'}}>
+            {errors.title && errors.title.type === "required" && (
+              <span className={styles.alert}>必須項目</span>
+            )}
+            {errors.title && errors.title.type === "maxLength" && (
+              <span className={styles.alert}>最大30文字</span>
+            )}
+          </Box>
+          <Box my={6} />
+          <ReactMde
+            value={contents}
+            onChange={setContents}
+            selectedTab={selectedTab}
+            onTabChange={setSelectedTab}
+            generateMarkdownPreview={(markdown) =>
+              Promise.resolve(converter.makeHtml(markdown))
+            }
+          />
+          <Box sx={{ display: "flex", justifyContent: "center" }} mt={6}>
+            <CustomButton type="submit" variant="contained" color="secondary">破棄</CustomButton>
+            <CustomButton type="submit" variant="contained" color="secondary">保存</CustomButton>
+          </Box>
+        </form>
       </CustomPaper>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <CustomButton variant="contained" color="secondary">
-          破棄
-        </CustomButton>
-        <CustomButton variant="contained" color="info">
-          追加
-        </CustomButton>
-      </Box>
     </>
   );
 };
