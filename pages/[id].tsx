@@ -1,21 +1,25 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 import CustomPaper from "components/customUI/CustomPaper";
+import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
 
 const Post = () => {
   return (
     <div>
       <CustomPaper elevation={3}>
-        <Box py={6} px={12}>
-          <Typography
-            variant="h4"
-            component="div"
-            gutterBottom
-            sx={{ textAlign: "center" }}
-          >
-            タイトルが入ります。
-          </Typography>
-        </Box>
+        <Typography
+          variant="h4"
+          component="div"
+          gutterBottom
+          sx={{ textAlign: "center" }}
+        >
+          タイトルが入ります。
+        </Typography>
+          <ReactMarkdown
+            plugins={[gfm]}
+            unwrapDisallowed={false}
+          >ああ</ReactMarkdown>
       </CustomPaper>
     </div>
   );
