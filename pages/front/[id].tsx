@@ -6,7 +6,7 @@ import gfm from "remark-gfm";
 
 const Post = () => {
   return (
-    <div>
+    <>
       <CustomPaper elevation={3}>
         <Typography
           variant="h4"
@@ -21,7 +21,7 @@ const Post = () => {
             unwrapDisallowed={false}
           >ああ</ReactMarkdown>
       </CustomPaper>
-    </div>
+    </>
   );
 };
 

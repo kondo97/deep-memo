@@ -12,9 +12,9 @@ fetchTableData();
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <Main />
-    </div>
+    </>
   );
 };
 
