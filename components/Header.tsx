@@ -13,7 +13,7 @@ export default function ButtonAppBar() {
               Memo
             </Typography>
           </Link>
-          <Link href="/create" passHref>
+          <Link href="/front/create" passHref>
             <Button variant="contained" color="secondary">新規作成</Button>
           </Link>
           <Button variant="contained" color="success" className={styles.lowercase}>Logout</Button>
