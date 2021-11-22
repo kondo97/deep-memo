@@ -29,7 +29,7 @@ const Create = () => {
   const [contents, setContents] = useState<string>("");
   const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
-  //フォーム
+  //入力フォーム
   type Post = {
     title: string;
     contents: string;

@@ -14,7 +14,7 @@ const Post = () => {
           gutterBottom
           sx={{ textAlign: "center" }}
         >
-          タイトルが入ります。
+          タイトルが入ります
         </Typography>
           <ReactMarkdown
             plugins={[gfm]}

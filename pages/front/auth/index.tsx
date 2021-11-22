@@ -14,7 +14,7 @@ const Auth = () => {
     <>
     <Paper className={styles.center}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField fullWidth multiline />
+        <TextField fullWidth/>
         <TextField fullWidth />
         <Button type="submit" variant="contained" color="secondary">
           ログイン
