@@ -1,16 +1,27 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
-import markdown from 'styles/Markdown.module.css'
+import markdown from "styles/Markdown.module.css";
+import { Typography, Box } from "@mui/material";
 
 const Markdown = (props: any) => {
   console.log(props);
   return (
-    <div className="Markdown">
-      <ReactMarkdown plugins={[gfm]} unwrapDisallowed={false}>
-        {props.contents}
-      </ReactMarkdown>
-    </div>
+    <>
+      <Typography
+        variant="h4"
+        component="div"
+        gutterBottom
+        sx={{ textAlign: "center" }}
+      >
+        {props.title}
+      </Typography>
+      <Box className='markdown'>
+        <ReactMarkdown plugins={[gfm]} unwrapDisallowed={false}>
+          {props.contents}
+        </ReactMarkdown>
+      </Box>
+    </>
   );
 };
 
