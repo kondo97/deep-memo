@@ -3,7 +3,7 @@ import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 import Link from "next/link";
 import styles from 'styles/Home.module.css'
 
-export default function ButtonAppBar() {
+export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

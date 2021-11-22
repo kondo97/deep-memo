@@ -1,29 +1,44 @@
-import React, { useState } from "react";
-import { TextField, Box, Button, Grid, Divider, Paper } from "@mui/material";
-import { useForm } from "react-hook-form";
-import styles from "styles/Home.module.css";
+import React from "react";
+import { Button, Grid } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Link from "next/link";
+import CustomLoginPaper from "components/customUI/CustomLoginPaper";
 
 const Auth = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = () => {};
+  const CustomGrid = styled(Grid)({
+    textAlign: "center",
+  });
+  const CustomButton = styled(Button)({
+    width: 250,
+  });
+
   return (
     <>
-    <Paper className={styles.center}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField fullWidth/>
-        <TextField fullWidth />
-        <Button type="submit" variant="contained" color="secondary">
-          ログイン
-        </Button>
-      </form>
-      <Divider />
-      </Paper>
+      <CustomLoginPaper>
+        <Grid container spacing={4}>
+          <CustomGrid item xs={12}>
+            <Link href="auth/mailLogin" passHref>
+              <CustomButton variant="contained" color="info">
+                メールアドレスでログイン
+              </CustomButton>
+            </Link>
+          </CustomGrid>
+          <CustomGrid item xs={12}>
+            <CustomButton variant="contained" color="info">
+              ゲストアカウントでログイン
+            </CustomButton>
+          </CustomGrid>
+          <CustomGrid item xs={12}>
+            <Link href="auth/newLogin" passHref>
+              <CustomButton variant="contained" color="info">
+                新規ユーザー登録
+              </CustomButton>
+            </Link>
+          </CustomGrid>
+        </Grid>
+      </CustomLoginPaper>
     </>
   );
 };
 
-export default Auth
+export default Auth;
