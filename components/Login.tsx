@@ -3,7 +3,6 @@ import { TextField, Button, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CustomLoginPaper from "components/customUI/CustomLoginPaper";
 import styles from "styles/Home.module.css";
-import { truncateSync } from "fs";
 
 type Props = {
   name: string;

@@ -5,10 +5,14 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const ArrowTop = () => {
   return (
     <>
-      <Link href="/" underline="none" color="inherit">
+      <Link href='/' color="inherit" underline="none">
         <Box
           component="span"
-          sx={{ display: "inline-flex", alignItems: "center", marginTop: '5px'}}
+          sx={{
+            display: "inline-flex",
+            alignItems: "center",
+            marginTop: "5px",
+          }}
         >
           <ArrowBackIcon />
           <Typography
