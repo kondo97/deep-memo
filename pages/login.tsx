@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import Link from "next/link";
 import CustomLoginPaper from "components/customUI/CustomLoginPaper";
 
+
 const Auth = () => {
   const CustomGrid = styled(Grid)({
     textAlign: "center",
@@ -17,9 +18,9 @@ const Auth = () => {
       <CustomLoginPaper>
         <Grid container spacing={4}>
           <CustomGrid item xs={12}>
-            <Link href="auth/mailLogin" passHref>
+            <Link href="/api/auth/signin" passHref>
               <CustomButton variant="contained" color="info">
-                メールアドレスでログイン
+                GitHub
               </CustomButton>
             </Link>
           </CustomGrid>
@@ -27,13 +28,6 @@ const Auth = () => {
             <CustomButton variant="contained" color="info">
               ゲストアカウントでログイン
             </CustomButton>
-          </CustomGrid>
-          <CustomGrid item xs={12}>
-            <Link href="auth/newLogin" passHref>
-              <CustomButton variant="contained" color="info">
-                新規ユーザー登録
-              </CustomButton>
-            </Link>
           </CustomGrid>
         </Grid>
       </CustomLoginPaper>
