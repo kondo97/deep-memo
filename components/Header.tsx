@@ -14,7 +14,7 @@ export default function Header() {
               Memo
             </Typography>
           </Link>
-          <Link href="/front/create" passHref>
+          <Link href="/create" passHref>
             <CustomButton variant="contained" color="primary">新規作成</CustomButton>
           </Link>
           <CustomButton variant="contained" color="secondary">ログアウト</CustomButton>
