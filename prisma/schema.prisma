@@ -7,8 +7,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// schema.prisma
-
 model Post {
   id        Int     @default(autoincrement()) @id
   title     String
