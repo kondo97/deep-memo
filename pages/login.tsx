@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Link from "next/link";
 import CustomLoginPaper from "components/customUI/CustomLoginPaper";
-
+import styles from "styles/Home.module.css";
+import { getProviders, signIn, signOut, useSession } from "next-auth/client";
+import { Router } from "@mui/icons-material";
+import { useRouter } from "next/dist/client/router";
 
 const Auth = () => {
   const CustomGrid = styled(Grid)({
@@ -11,26 +14,59 @@ const Auth = () => {
   });
   const CustomButton = styled(Button)({
     width: 250,
+    borderRadius: "30px",
+    "&:hover": {
+      background: "rgba(0,0,0,0.5)",
+    },
+  });
+
+  const [session, loading] = useSession();
+  const router = useRouter();
+
+  const authorized = () => {
+    if (session) {
+      router.push("/");
+    }
+  };
+  useEffect(() => {
+    authorized();
   });
 
   return (
     <>
-      <CustomLoginPaper>
-        <Grid container spacing={4}>
-          <CustomGrid item xs={12}>
-            <Link href="/api/auth/signin" passHref>
-              <CustomButton variant="contained" color="info">
-                GitHub
-              </CustomButton>
-            </Link>
-          </CustomGrid>
-          <CustomGrid item xs={12}>
-            <CustomButton variant="contained" color="info">
-              ゲストアカウントでログイン
-            </CustomButton>
-          </CustomGrid>
-        </Grid>
-      </CustomLoginPaper>
+      {!session && (
+        <>
+          {loading ? (
+            <>Loading ...</>
+          ) : (
+            <>
+              <CustomLoginPaper>
+                <Grid container spacing={4}>
+                  <CustomGrid item xs={12}>
+                    <CustomButton
+                      variant="contained"
+                      className={styles.github}
+                      onClick={() => signIn("github")}
+                    >
+                      GitHub
+                    </CustomButton>
+                  </CustomGrid>
+                  <CustomGrid item xs={12}>
+                    <CustomButton
+                      variant="contained"
+                      color="info"
+                      onClick={() => signIn("credentials")}
+                    >
+                      ゲストユーザー
+                    </CustomButton>
+                    {/* </Link> */}
+                  </CustomGrid>
+                </Grid>
+              </CustomLoginPaper>
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };

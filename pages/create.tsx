@@ -7,6 +7,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import { useForm } from "react-hook-form";
 import styles from "styles/Home.module.css";
+import Redirect from "./hooks/redirect";
 
 
 var Showdown = require("showdown");
@@ -18,6 +19,7 @@ const converter = new Showdown.Converter({
 });
 
 const Create = () => {
+  Redirect()
   const [title, setTitle] = useState<string>("");
   const setDataTitle = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     e.preventDefault();
