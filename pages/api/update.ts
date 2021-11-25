@@ -10,17 +10,16 @@ export default async function handle(
   const session = await getSession({ req });
   if (!session) return res.status(401).end("Please log in to view");
 
-  const userId = session.user?.id;
-  const result = await prisma.post.create({
+  const id = Number(req.query.id);
+
+  const result = await prisma.post.update({
+    where: {
+      id: id,
+    },
     data: {
       title: title,
       content: content,
-      author: {
-        connect: {
-          id: userId,
-        },
-      },
-    },
+    }
   });
   res.status(200).json(result);
 }
