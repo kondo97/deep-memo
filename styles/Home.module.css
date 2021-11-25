@@ -1,7 +1,9 @@
+/* ポインターカーソル */
 .pointer {
   cursor: pointer;
 }
 
+/* バリデーションのメッセージ */
 .alert {
   color: red;
   font-size: 0.8rem;
@@ -10,18 +12,36 @@
 
 /* ヘッダーの色 */
 .headerColor {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(85, 85, 85, 1));
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1),
+    rgba(85, 85, 85, 1)
+  );
 }
 
 /* ボタンの色 */
-  .github {
-    background: #24292F;
-  }
+.github {
+  background: #24292f;
+}
 
-  .google {
-    background: #fff;
-    color: #24292F;
-  }
+.google {
+  background: #fff;
+  color: #24292f;
+}
 
+/* ポジションの絶対配置 */
+.parent {
+  position: relative;
+}
 
+.childBottomRight {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+}
 
+.childTopRight {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
