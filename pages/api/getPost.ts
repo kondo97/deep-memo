@@ -12,9 +12,6 @@ export default async function handle(
   const id = Number(req.query.id)
 
   const post = await prisma.post.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
     where: {
       id: id,
     },

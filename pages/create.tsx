@@ -49,6 +49,7 @@ const Create = () => {
       title: title,
       content: content
     }).then((res) => {
+      alert('追加しました。')
       Router.push('/')
     }).catch((error) => {
       console.error(error)

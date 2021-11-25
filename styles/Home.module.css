@@ -39,3 +39,9 @@
   right: 10px;
   bottom: 0;
 }
+
+.childTopRight {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
