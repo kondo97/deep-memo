@@ -108,7 +108,7 @@ const Post = () => {
       )}
       {editFlag && 
       <>
-       <Create props={post[0]} editFlag={editFlag} id={id}/>
+       <Create props={post[0]} editFlag={editFlag} setEditFlag={setEditFlag} id={id}/>
       </>
       }
     </>
