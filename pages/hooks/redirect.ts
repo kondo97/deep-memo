@@ -6,13 +6,11 @@ const Redirect = () => {
   const [session, loading] = useSession();
   const router = useRouter();
   const redirectPage = () => {
-    if (!session) {
+    if (!session && !loading) {
       router.push("login");
     }
   };
-  useEffect(() => {
-    redirectPage();
-  });
+  redirectPage();
 };
 
 export default Redirect;

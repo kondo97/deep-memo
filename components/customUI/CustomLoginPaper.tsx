@@ -2,7 +2,7 @@ import { Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const CustomLoginPaper = styled(Paper)({
-  width: 500,
+  width: 350,
   padding: 50,
   position: 'fixed',
   left: '50%',

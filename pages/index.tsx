@@ -1,23 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import axios from "axios";
-import Main from "components/Main";
+import Post, { PostProps } from "components/Post";
 import { signOut, useSession, Provider, signIn } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
-import Redirect from "./hooks/redirect"
+import Redirect from "./hooks/redirect";
+import { Paper, Grid, styled } from "@mui/material";
 
-const fetchTableData = async () => {
-  const res = await axios.get("/api/hello");
-  console.log(res.data);
-};
+const Home = () => {
+  Redirect();
+  const [posts, setPosts] = useState<PostProps[]>([])
+  useEffect(() => {
+    const getAllPosts = async () => {
+      const res = await axios.get("/api/getAllPosts");
+      setPosts(res.data)
+    } 
+    getAllPosts()
+  }, [])
 
-fetchTableData();
-
-const Home: NextPage = () => {
-  Redirect()
   return (
     <>
-      <Main />
+      <Grid container spacing={2}>
+        {posts.map((post: PostProps) => (
+          <Grid item xs={3} key={post.id}>
+            <Post post={post} />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };

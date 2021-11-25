@@ -20,6 +20,10 @@ export default function Header() {
     if(session)
     router.push("/");
   }
+
+  console.log(session);
+  
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className={styles.headerColor}>
