@@ -7,7 +7,9 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import { useForm } from "react-hook-form";
 import styles from "styles/Home.module.css";
-
+import Redirect from "./hooks/redirect";
+import axios from "axios";
+import Router from 'next/router';
 
 var Showdown = require("showdown");
 const converter = new Showdown.Converter({
@@ -18,18 +20,21 @@ const converter = new Showdown.Converter({
 });
 
 const Create = () => {
+  Redirect();
   const [title, setTitle] = useState<string>("");
-  const setDataTitle = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const setDataTitle = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     e.preventDefault();
     setTitle(e.target.value);
   };
-  const [contents, setContents] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
   //入力フォーム
   type Post = {
     title: string;
-    contents: string;
+    content: string;
   };
   const {
     register,
@@ -37,16 +42,24 @@ const Create = () => {
     formState: { errors },
   } = useForm<Post>();
   const titleField = register("title", { required: true, maxLength: 20 });
-  const onSubmit = () => {
-    console.log(title);
-    console.log(contents);
+
+  const onSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    await axios.post('/api/create', {
+      title: title,
+      content: content
+    }).then((res) => {
+      Router.push('/')
+    }).catch((error) => {
+      console.error(error)
+    })
   };
 
   return (
     <>
       <ArrowTop />
       <CustomPaper elevation={3}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <TextField
             placeholder="タイトル"
             fullWidth
@@ -57,7 +70,7 @@ const Create = () => {
             }}
             required
           />
-          <Box sx={{textAlign: 'right'}}>
+          <Box sx={{ textAlign: "right" }}>
             {errors.title && errors.title.type === "required" && (
               <span className={styles.alert}>必須項目</span>
             )}
@@ -67,8 +80,8 @@ const Create = () => {
           </Box>
           <Box my={6} />
           <ReactMde
-            value={contents}
-            onChange={setContents}
+            value={content}
+            onChange={setContent}
             selectedTab={selectedTab}
             onTabChange={setSelectedTab}
             generateMarkdownPreview={(markdown) =>
@@ -76,8 +89,12 @@ const Create = () => {
             }
           />
           <Box sx={{ display: "flex", justifyContent: "center" }} mt={6}>
-            <CustomButton type="submit" variant="contained" color="secondary">破棄</CustomButton>
-            <CustomButton type="submit" variant="contained" color="primary">追加</CustomButton>
+            <CustomButton type="submit" variant="contained" color="secondary">
+              破棄
+            </CustomButton>
+            <CustomButton type="submit" variant="contained" color="primary">
+              追加
+            </CustomButton>
           </Box>
         </form>
       </CustomPaper>

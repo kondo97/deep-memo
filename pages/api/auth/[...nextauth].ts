@@ -13,19 +13,33 @@ const options = {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
+    Providers.Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    Providers.Credentials({
+      name: 'Credential',
+      async authorize() {
+        const user = { name: 'ゲストユーザー', email: 'guest@example.com' };
+        return user;
+      },
+      credentials: {},
+    }),
   ],
   adapter: Adapters.Prisma.Adapter({ prisma }),
   secret: process.env.SECRET,
-  // callbacks: {
-  //   async jwt(token, user, account, profile, isNewUser) {           //👈ポイント②
-  //     if (account?.accessToken) {
-  //       token.accessToken = account.accessToken;
-  //     }
-  //     return token;
-  //   },
-  //   async session(session, token) {                                 //👈ポイント③
-  //     session.accessToken = token.accessToken;
-  //     return session;
-  //   },
-  // },
+  callbacks: {
+    session: async (session: any, user: any) => {
+      return Promise.resolve({
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id
+        }
+      });
+    }
+  },
+  // session: {
+  //   jwt: true, 
+  // }
 };

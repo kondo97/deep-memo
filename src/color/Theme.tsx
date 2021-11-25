@@ -9,6 +9,11 @@ const theme = createTheme({
       main: '#808080',
     },
   },
+  typography: {
+        button: {
+            textTransform: "none"
+        }
+    }
 });
 
 export default theme

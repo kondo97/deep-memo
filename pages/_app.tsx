@@ -3,7 +3,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Header from "components/Header";
 import { Container, Box, ThemeProvider } from "@mui/material";
-import theme from "components/color/Theme";
+import theme from "src/color/Theme";
 import { Provider } from "next-auth/client";
 
 

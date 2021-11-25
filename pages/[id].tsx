@@ -4,8 +4,10 @@ import CustomPaper from "components/customUI/CustomPaper";
 import ArrowTop from "components/ArrowTop";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import Redirect from "./hooks/redirect";
 
 const Post = () => {
+  Redirect()
   return (
     <>
       <ArrowTop />
