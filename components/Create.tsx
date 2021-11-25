@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextField,
   Box,
@@ -35,10 +35,24 @@ const Create: React.FC<{
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     e.preventDefault();
-    setTitle(e.target.value);
+    const value = e.target.value
+    setTitle(value);
+    localStorage.setItem('postTitle', JSON.stringify(value))
   };
   const [content, setContent] = useState<string | undefined>(props?.content);
+  const setDataContent = (value: string) => {
+    setContent(value)
+    localStorage.setItem('postContent', JSON.stringify(value))
+  }
   const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
+
+  //ローカルストレージから初期値を取り出す。
+  useEffect(() => {
+    const titleValue = localStorage.getItem('postTitle')
+    titleValue && setTitle(JSON.parse(titleValue))
+    const contentValue = localStorage.getItem('postContent')
+    contentValue && setContent(JSON.parse(contentValue))
+  }, [])
 
   //入力フォーム
   type Post = {
@@ -128,7 +142,7 @@ const Create: React.FC<{
           <Box my={6} />
           <ReactMde
             value={content}
-            onChange={setContent}
+            onChange={(value) => setDataContent(value)}
             selectedTab={selectedTab}
             onTabChange={setSelectedTab}
             generateMarkdownPreview={(markdown) =>
