@@ -8,6 +8,9 @@ import styles from "styles/Home.module.css"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import removeMd from 'remove-markdown';
+import { useRouter } from "next/router";
+import { PostProps } from "types/PostProps"
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -19,27 +22,20 @@ const Item = styled(Paper)(({ theme }) => ({
   marginTop: 30,
 }));
 
-export type PostProps = {
-  authorId: number;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  id: number;
-  title: string;
-};
-
-const dummy = "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーでaa"
-
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+  const router = useRouter()
+  const goPostPage = () => {
+    router.push(`${post.id}`)
+  }
   return (
     <>
-      <Item elevation={3} className={styles.parent}>
+      <Item elevation={3} className={`${styles.parent} ${styles.pointer}`} onClick={goPostPage}>
         <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Typography variant="subtitle1" align="left" sx={{fontWeight: 600}}>{turnCate(dummy, 25)}</Typography>
+          <Typography variant="subtitle1" align="left" sx={{fontWeight: 600}}>{turnCate(post.title, 25)}</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="subtitle2" align="left">{turnCate(removeMd(dummy), 30)}</Typography>
+          <Typography variant="subtitle2" align="left">{turnCate(removeMd(post.content), 30)}</Typography>
         </Grid>
         <Grid item xs={12} className={styles.childBottomRight}>
           <Typography variant="subtitle2">{formatDate(post.createdAt)}</Typography>

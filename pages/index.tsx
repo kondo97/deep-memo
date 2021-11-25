@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import axios from "axios";
-import Post, { PostProps } from "components/Post";
+import Post from "components/Post";
 import { signOut, useSession, Provider, signIn } from "next-auth/client";
 import { useRouter } from "next/dist/client/router";
 import Redirect from "./hooks/redirect";
 import { Paper, Grid, styled } from "@mui/material";
+import { PostProps } from "types/PostProps";
 
 const Home = () => {
   Redirect();

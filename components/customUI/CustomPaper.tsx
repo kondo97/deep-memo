@@ -6,7 +6,10 @@ const CustomPaper = styled(Paper)({
   marginBottom: 40,
   marginLeft: 160,
   marginRight: 160,
-  padding: 60,
+  paddingTop: 60,
+  paddingBottom: 60,
+  paddingRight: 120,
+  paddingLeft: 120
 });
 
 export default CustomPaper
