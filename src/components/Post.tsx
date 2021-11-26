@@ -4,8 +4,8 @@ import { styled } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import removeMd from 'remove-markdown';
-import { formatDate } from 'src/pages/hooks/formatDate';
-import { turnCate } from 'src/pages/hooks/turnCate';
+import formatDate from 'src/pages/hooks/formatDate';
+import turnCate from 'src/pages/hooks/turnCate';
 import styles from 'src/styles/Home.module.css';
 import { PostProps } from 'types/PostProps';
 

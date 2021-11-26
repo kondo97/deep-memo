@@ -1,8 +1,8 @@
-import { signOut, useSession, Provider, signIn } from 'next-auth/client';
-import { useRouter } from 'next/dist/client/router';
-import { useEffect } from 'react';
+import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
-const Redirect = () => {
+export default function useRidirect() {
   const [session, loading] = useSession();
   const router = useRouter();
   const redirectPage = () => {
@@ -13,6 +13,8 @@ const Redirect = () => {
   useEffect(() => {
     redirectPage();
   })
+  return (
+    <>
+    </>
+  )
 };
-
-export default Redirect;

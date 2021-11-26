@@ -7,7 +7,7 @@ import ReactMde from 'react-mde';
 import CustomButton from 'src/components/customUI/CustomButton';
 import CustomPaper from 'src/components/customUI/CustomPaper';
 import 'react-mde/lib/styles/css/react-mde-all.css';
-import Redirect from 'src/pages/hooks/redirect';
+import Redirect from 'src/pages/hooks/useRedirect';
 import styles from 'src/styles/Home.module.css';
 
 import { PostProps } from 'types/PostProps';
