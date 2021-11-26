@@ -7,7 +7,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   const session = await getSession({ req });
   if (!session) return res.status(401).end('Please log in to view');
 
-  const userId = session.user?.id;
+  const userId = Number(session.user?.id)
   const result = await prisma.post.create({
     data: {
       title: title,
