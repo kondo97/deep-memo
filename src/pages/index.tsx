@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
-import Redirect from './hooks/redirect';
+import Redirect from './hooks/useRedirect';
 import Post from 'src/components/Post';
 import { PostProps } from 'types/PostProps';
 
