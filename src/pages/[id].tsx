@@ -1,5 +1,6 @@
 import { Typography, Box, Divider, Button, styled } from '@mui/material';
 import axios from 'axios';
+import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
@@ -29,6 +30,7 @@ const Post = () => {
   }, [router]);
 
   //パラメーターに値がセットさせたら実行される。
+  const [session, loading] = useSession();
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get('api/getPost', {
@@ -38,10 +40,10 @@ const Post = () => {
       });
       setPost(res.data);
     };
-    if (id) {
+    if (id && session) {
       getPost();
     }
-  }, [id, router.query.id]);
+  }, [id, router.query.id, session]);
 
   const CustomButton = styled(Button)({
     width: 250,

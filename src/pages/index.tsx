@@ -1,23 +1,31 @@
 import { Paper, Grid, styled } from '@mui/material';
 import axios from 'axios';
 import type { NextPage } from 'next';
-import { signOut, useSession, Provider, signIn } from 'next-auth/client';
+import { GetServerSideProps } from 'next';
+import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import Redirect from './hooks/redirect';
 import Post from 'src/components/Post';
 import { PostProps } from 'types/PostProps';
 
+
+type Props = {
+  posts: PostProps[];
+};
+
 const Home = () => {
   Redirect();
   const [posts, setPosts] = useState<PostProps[]>([]);
+
+  const [session, loading] = useSession();
   useEffect(() => {
     const getAllPosts = async () => {
       const res = await axios.get('/api/getAllPosts');
       setPosts(res.data);
     };
-    getAllPosts();
-  }, []);
+    session && getAllPosts();
+  }, [session]);
 
   return (
     <>
