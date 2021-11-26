@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Typography, Box, Divider, Button, styled } from "@mui/material";
-import CustomPaper from "components/customUI/CustomPaper";
-import ArrowTop from "components/ArrowTop";
-import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
-import Redirect from "./hooks/redirect";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { PostProps } from "types/PostProps";
-import styles from "styles/Home.module.css";
-import { formatDate } from "./hooks/formatDate";
-import  Create from "components/Create"
+import { Typography, Box, Divider, Button, styled } from '@mui/material';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+import { formatDate } from './hooks/formatDate';
+import Redirect from './hooks/redirect';
+import ArrowTop from 'src/components/ArrowTop';
+import Create from 'src/components/Create';
+import CustomPaper from 'src/components/customUI/CustomPaper';
+import styles from 'src/styles/Home.module.css';
+import { PostProps } from 'types/PostProps';
 
 const Post = () => {
   Redirect();
-  
-  const [editFlag, setEditFlag] = useState<boolean>(false)
-  
+
+  const [editFlag, setEditFlag] = useState<boolean>(false);
+
   const [post, setPost] = useState<PostProps[]>([]);
   const router = useRouter();
   const [id, setId] = useState<number>();
@@ -31,7 +31,7 @@ const Post = () => {
   //パラメーターに値がセットさせたら実行される。
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("api/getPost", {
+      const res = await axios.get('api/getPost', {
         params: {
           id: router.query.id,
         },
@@ -41,25 +41,25 @@ const Post = () => {
     if (id) {
       getPost();
     }
-  }, [id]);
+  }, [id, router.query.id]);
 
   const CustomButton = styled(Button)({
     width: 250,
-    borderRadius: "30px",
+    borderRadius: '30px',
   });
 
   //削除
   const deletePost = async () => {
-    if (window.confirm("削除しますか。")) {
+    if (window.confirm('削除しますか。')) {
       await axios
-        .delete("/api/delete", {
+        .delete('/api/delete', {
           params: {
             id: router.query.id,
           },
         })
         .then((res) => {
-          alert("削除しました。");
-          router.push("/");
+          alert('削除しました。');
+          router.push('/');
         })
         .catch((error) => {
           console.error(error);
@@ -72,23 +72,18 @@ const Post = () => {
       <ArrowTop />
       {!editFlag && (
         <>
-          <Box sx={{ textAlign: "right", marginRight: 22 }}>
+          <Box sx={{ textAlign: 'right', marginRight: 22 }}>
             <Button onClick={deletePost}>削除</Button>
           </Box>
           <CustomPaper elevation={3} className={styles.parent}>
             <Typography
-              variant="subtitle2"
-              sx={{ textAlign: "right" }}
+              variant='subtitle2'
+              sx={{ textAlign: 'right' }}
               className={styles.childTopRight}
             >
               作成日：{formatDate(post[0]?.createdAt)}
             </Typography>
-            <Typography
-              variant="h4"
-              component="div"
-              gutterBottom
-              sx={{ textAlign: "center" }}
-            >
+            <Typography variant='h4' component='div' gutterBottom sx={{ textAlign: 'center' }}>
               {/* {dummy} */}
               {post[0]?.title}
             </Typography>
@@ -99,18 +94,22 @@ const Post = () => {
               </ReactMarkdown>
             </Box>
           </CustomPaper>
-          <Box sx={{ textAlign: "center" }} mt={6}>
-            <CustomButton variant="contained" color="primary" onClick={() => setEditFlag(!editFlag)}>
+          <Box sx={{ textAlign: 'center' }} mt={6}>
+            <CustomButton
+              variant='contained'
+              color='primary'
+              onClick={() => setEditFlag(!editFlag)}
+            >
               編集
             </CustomButton>
           </Box>
         </>
       )}
-      {editFlag && 
-      <>
-       <Create props={post[0]} editFlag={editFlag} setEditFlag={setEditFlag} id={id}/>
-      </>
-      }
+      {editFlag && (
+        <>
+          <Create props={post[0]} editFlag={editFlag} setEditFlag={setEditFlag} id={id} />
+        </>
+      )}
     </>
   );
 };

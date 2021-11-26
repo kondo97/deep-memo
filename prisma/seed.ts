@@ -1,13 +1,13 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
   const guest = await prisma.user.upsert({
-    where: { email: "guest@example.com" },
+    where: { email: 'guest@example.com' },
     update: {},
     create: {
-      email: "guest@example.com",
-      name: "ゲストユーザー",
+      email: 'guest@example.com',
+      name: 'ゲストユーザー',
     },
   });
 }
