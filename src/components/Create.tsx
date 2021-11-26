@@ -1,6 +1,6 @@
 import { TextField, Box } from '@mui/material';
 import axios from 'axios';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ReactMde from 'react-mde';
@@ -27,7 +27,7 @@ const Create: React.FC<{
   setEditFlag?: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ props, editFlag, id, setEditFlag }) => {
   Redirect();
-  const router = useRouter()
+  const router = useRouter();
   const [title, setTitle] = useState<string | undefined>(props?.title);
   const setDataTitle = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     e.preventDefault();

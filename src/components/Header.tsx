@@ -7,15 +7,15 @@ import CustomButton from 'src/components/customUI/CustomButton';
 import styles from 'src/styles/Home.module.css';
 
 export default function Header() {
+  const router = useRouter();
   const [session, loading] = useSession();
-  const signOutConfirm = () => {
+  const signOutConfirm = async () => {
     const confirm = window.confirm('ログアウトしますか。');
-    if (confirm) {
-      console.log('logout');
-      signOut();
+    if(confirm) {
+      signOut()
+      router.push('/login')
     }
   };
-  const router = useRouter();
   const goTop = () => {
     if (session) router.push('/');
   };
