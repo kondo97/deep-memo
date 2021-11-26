@@ -1,7 +1,5 @@
 import { Paper, Grid, styled } from '@mui/material';
 import axios from 'axios';
-import type { NextPage } from 'next';
-import { GetServerSideProps } from 'next';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';

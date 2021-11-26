@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles';
 import { getProviders, signIn, signOut, useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useEffect } from 'react';
 import CustomLoginPaper from 'src/components/customUI/CustomLoginPaper';
 import styles from 'src/styles/Home.module.css';
