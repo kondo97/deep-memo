@@ -41,7 +41,7 @@ const Post = () => {
     if (id) {
       getPost();
     }
-  }, [id, router.query.id]);
+  }, [id]);
 
   const CustomButton = styled(Button)({
     width: 250,
