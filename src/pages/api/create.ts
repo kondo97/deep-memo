@@ -4,10 +4,8 @@ import prisma from '../../../lib/prisma';
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { title, content } = req.body;
-  const session = await getSession({ req });
-  if (!session) return res.status(401).end('Please log in to view');
-
-  const userId = Number(session.user?.id)
+  const userId = Number(req.query?.id)
+  if (!userId) return res.status(401).end('Please log in to view');
   const result = await prisma.post.create({
     data: {
       title: title,
