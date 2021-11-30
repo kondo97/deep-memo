@@ -17,12 +17,12 @@
 
 /* ボタンの色 */
 .github {
-  background: #24292f;
+  background: #24292f !important;
 }
 
 .google {
-  background: #fff;
-  color: #24292f;
+  background: #fff !important;
+  color: #24292f !important;
 }
 
 /* ポジションの絶対配置 */
