@@ -20,7 +20,7 @@ const options = {
     Providers.Credentials({
       name: 'Credential',
       async authorize() {
-        const user = { name: 'ゲストユーザー', email: 'guest@example.com' };
+        const user = { name: 'ゲストユーザー', email: 'guest@example.com', id: 2 };
         return user;
       },
       credentials: {},
@@ -34,12 +34,12 @@ const options = {
         ...session,
         user: {
           ...session.user,
-          id: user.id,
+          id: Number(user.sub),
         },
       });
     },
   },
-  // session: {
-  //   jwt: true,
-  // }
+  session: {
+    jwt: true,
+  }
 };
