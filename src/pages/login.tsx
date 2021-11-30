@@ -1,12 +1,14 @@
 import { Router } from '@mui/icons-material';
-import { Button, Grid, Box, Divider } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Button, Grid, Box, Typography } from '@mui/material';
+import { createStyles, createTheme, makeStyles, styled } from '@mui/material/styles';
 import { getProviders, signIn, signOut, useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 import CustomLoginPaper from 'src/components/customUI/CustomLoginPaper';
 import styles from 'src/styles/Home.module.css';
+
+const theme = createTheme()
 
 const Auth = () => {
   const CustomGrid = styled(Grid)({
@@ -37,7 +39,7 @@ const Auth = () => {
       {!session && (
         <>
           {loading ? (
-            <>Loading ...</>
+            <><Typography className={styles.fixCenter}>Loading ...</Typography></>
           ) : (
             <>
               <CustomLoginPaper>
@@ -82,7 +84,6 @@ const Auth = () => {
                     >
                       ゲストユーザー
                     </CustomButton>
-                    {/* </Link> */}
                   </CustomGrid>
                 </Grid>
               </CustomLoginPaper>

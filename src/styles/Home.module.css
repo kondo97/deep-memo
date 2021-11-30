@@ -41,3 +41,11 @@
   top: 20px;
   right: 20px;
 }
+
+/* 中央配置 */
+.fixCenter {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
