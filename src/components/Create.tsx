@@ -1,5 +1,6 @@
 import { TextField, Box } from '@mui/material';
 import axios from 'axios';
+// import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -28,6 +29,7 @@ const Create: React.FC<{
 }> = ({ props, editFlag, id, setEditFlag }) => {
   Redirect();
   const router = useRouter();
+  // const [session, loading] = useSession()
   const [title, setTitle] = useState<string | undefined>(props?.title);
   const setDataTitle = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     e.preventDefault();
@@ -68,6 +70,7 @@ const Create: React.FC<{
     !editFlag
       ? await axios
           .post('/api/create', {
+            // id: session?.user.id,
             title: title,
             content: content,
           })

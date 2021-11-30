@@ -7,7 +7,8 @@
     "start": "next start",
     "lint": "next lint --dir src",
     "lint:fix": "eslint src --ext .js,jsx,.ts,.tsx --fix",
-    "format": "prettier --write --ignore-path .gitignore ./**/*.{js,jsx,ts,tsx,json,css,scss}"
+    "format": "prettier --write --ignore-path .gitignore ./**/*.{js,jsx,ts,tsx,json,css,scss}",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/react": "^11.6.0",
@@ -30,6 +31,7 @@
     "showdown": "^1.9.1"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "@types/next-auth": "^3.15.0",
     "@types/node": "^16.11.9",
     "@types/react": "17.0.35",
@@ -37,8 +39,12 @@
     "eslint": "7",
     "eslint-config-next": "12.0.4",
     "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.4.0",
+    "node-mocks-http": "^1.11.0",
     "prettier": "^2.5.0",
     "prisma": "3.5.0",
+    "supertest": "^6.1.6",
+    "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "typescript": "4.5.2"
   },

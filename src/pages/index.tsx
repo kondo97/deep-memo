@@ -1,25 +1,23 @@
 import { Paper, Grid, styled } from '@mui/material';
 import axios from 'axios';
 import { useSession } from 'next-auth/client';
-import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import Redirect from './hooks/useRedirect';
 import Post from 'src/components/Post';
 import { PostProps } from 'types/PostProps';
 
-
-type Props = {
-  posts: PostProps[];
-};
-
 const Home = () => {
   Redirect();
   const [posts, setPosts] = useState<PostProps[]>([]);
-
   const [session, loading] = useSession();
+
   useEffect(() => {
     const getAllPosts = async () => {
-      const res = await axios.get('/api/getAllPosts');
+      const res = await axios.get('/api/getAllPosts', {
+        params: {
+          id: session?.user.id
+        }
+      });
       setPosts(res.data);
     };
     session && getAllPosts();
