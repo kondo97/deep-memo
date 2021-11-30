@@ -1,7 +1,7 @@
 import { User, Post } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import httpMocks from 'node-mocks-http';
-import handler from '../pages/api/getPost';
+import handler from '../pages/api/delete';
 import { createPost } from './factories/create/createPost';
 import { deletePost } from './factories/create/deletePosts';
 import { createUser } from './factories/user/createUser';
@@ -32,9 +32,6 @@ describe('/api/getAllPosts', () => {
     beforeEach(async () => {
       post = await createPost(user.id);
     });
-    afterEach(async () => {
-      await deletePost(post.id);
-    });
     test('It returns 200 response', async () => {
       const mockReq = httpMocks.createRequest<NextApiRequest>({
         query: {
@@ -45,7 +42,7 @@ describe('/api/getAllPosts', () => {
       await handler(mockReq, mockRes);
       expect(mockRes.statusCode).toEqual(200);
       const res = JSON.parse(mockRes._getData())
-      expect(res[0].id).toBe(post.id);
+      expect(res.id).toBe(post.id);
     });
   });
 });

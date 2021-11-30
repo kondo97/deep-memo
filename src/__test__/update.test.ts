@@ -4,6 +4,7 @@ import httpMocks from 'node-mocks-http';
 import { createUser } from '../__test__/factories/user/createUser';
 import { deleteUser } from '../__test__/factories/user/deleteUser';
 import handler from '../pages/api/update';
+import { createPost } from './factories/create/createPost';
 import { deletePost } from './factories/create/deletePosts';
 
 describe('/api/getAllPosts', () => {
@@ -28,26 +29,28 @@ describe('/api/getAllPosts', () => {
   });
   describe('When user is not logged in.', () => {
     let post: Post;
-    beforeEach(async () => {});
+    beforeEach(async () => {
+      post = await createPost(user.id);
+    });
     afterEach(async () => {
       await deletePost(post.id);
     });
     test('It returns 200 response', async () => {
       const mockReq = httpMocks.createRequest<NextApiRequest>({
         query: {
-          id: user.id,
+          id: post.id,
         },
         body: {
-          title: 'タイトル',
-          content: 'コンテント',
+          title: 'タイトル2',
+          content: 'コンテント2',
         },
       });
       const mockRes = httpMocks.createResponse<NextApiResponse>();
       await handler(mockReq, mockRes);
       expect(mockRes.statusCode).toEqual(200);
-      post = JSON.parse(mockRes._getData());
-
-      expect(post.authorId).toBe(user.id);
+      const res = JSON.parse(mockRes._getData());
+      expect(res.title).toBe('タイトル2')
+      expect(res.content).toBe('コンテント2')
     });
   });
 });

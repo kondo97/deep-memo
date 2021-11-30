@@ -4,7 +4,7 @@ import httpMocks from 'node-mocks-http';
 import { createUser } from '../__test__/factories/user/createUser';
 import { deleteUser } from '../__test__/factories/user/deleteUser';
 import handler from '../pages/api/getAllPosts';
-import { createAllPost } from './factories/create/createAllPosts';
+import { createAllPosts } from './factories/create/createAllPosts';
 import { deletePost } from './factories/create/deletePosts';
 
 describe('/api/getAllPosts', () => {
@@ -30,7 +30,7 @@ describe('/api/getAllPosts', () => {
   describe('When user is not logged in.', () => {
     let posts: Post[];
     beforeEach(async () => {
-      posts = await createAllPost(user.id);
+      posts = await createAllPosts(user.id);
     });
     afterEach(async () => {
       await deletePost(posts[0].id);

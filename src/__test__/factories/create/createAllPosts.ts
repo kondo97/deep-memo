@@ -1,7 +1,7 @@
 import { Post } from '@prisma/client';
 import prisma from '../../../../lib/prisma';
 
-export async function createAllPost(id: number): Promise<Post[]> {
+export async function createAllPosts(id: number): Promise<Post[]> {
   const data = {
     title: 'タイトル',
     content: 'コンテント',
