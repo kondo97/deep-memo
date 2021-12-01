@@ -36,6 +36,12 @@
   bottom: 0;
 }
 
+.childBottomLeft {
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+}
+
 .childTopRight {
   position: absolute;
   top: 20px;
@@ -49,3 +55,4 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+

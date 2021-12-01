@@ -1,17 +1,18 @@
-import { TextField, Box } from '@mui/material';
+import { TextField, Box, Radio, Typography, Grid } from '@mui/material';
 import axios from 'axios';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ReactMde from 'react-mde';
+import ReactStars from 'react-stars';
 import CustomButton from 'src/components/customUI/CustomButton';
 import CustomPaper from 'src/components/customUI/CustomPaper';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import Redirect from 'src/pages/hooks/useRedirect';
 import styles from 'src/styles/Home.module.css';
-
 import { PostProps } from 'types/PostProps';
+
 
 var Showdown = require('showdown');
 const converter = new Showdown.Converter({
@@ -29,7 +30,7 @@ const Create: React.FC<{
 }> = ({ props, editFlag, id, setEditFlag }) => {
   Redirect();
   const router = useRouter();
-  const [session, loading] = useSession()
+  const [session, loading] = useSession();
   const [title, setTitle] = useState<string | undefined>(props?.title);
   const setDataTitle = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     e.preventDefault();
@@ -65,18 +66,45 @@ const Create: React.FC<{
   } = useForm<Post>({ mode: 'onChange' });
   const titleField = register('title', { required: true, maxLength: 20 });
 
+  // ラジオボタン
+  const [color, setColor] = useState<string | undefined>(props?.color);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setColor(event.target.value);
+  };
+
+  const controlProps = (item: string) => ({
+    checked: color === item,
+    onChange: handleChange,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  //スター
+  const [rating, setRationg] = useState<number | undefined>(props?.rating);
+  const ratingChanged = (newRating: number) => {
+    setRationg(newRating);
+  };
+
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     !editFlag
       ? await axios
-          .post('/api/create', {
-            title: title,
-            content: content,
-          }, {
-            params: {
-              id: session?.user.id
-            }
-          })
+          .post(
+            '/api/create',
+            {
+              title: title,
+              content: content,
+              rating: rating,
+              color: color,
+            },
+            {
+              params: {
+                id: session?.user.id,
+              },
+            },
+          )
           .then((res) => {
             alert('追加しました。');
             router.push('/');
@@ -87,7 +115,7 @@ const Create: React.FC<{
       : await axios
           .put(
             'api/update',
-            { title: title, content: content },
+            { title: title, content: content, rating: rating, color: color },
             {
               params: {
                 sessionId: session?.user.id,
@@ -142,7 +170,67 @@ const Create: React.FC<{
               <span className={styles.alert}>最大30文字</span>
             )}
           </Box>
-          <Box my={6} />
+          <Box my={4} />
+          <Grid container spacing={2}>
+            <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography>スター</Typography>
+              {/* スター */}
+            </Grid>
+            <Grid item xs={9} ml={1}>
+              <ReactStars
+                value={rating}
+                count={5}
+                onChange={ratingChanged}
+                size={24}
+                color2={'#ffd700'}
+                half={false}
+              />
+            </Grid>
+            {/* ラジオボタン */}
+            <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography>テーマカラー</Typography>
+            </Grid>
+            <Grid item xs={9}>
+              <div>
+                <Radio
+                  {...controlProps('a')}
+                  sx={{
+                    color: 'postThemeA.main',
+                    '&.Mui-checked': { color: 'postThemeA.main' },
+                  }}
+                />
+                <Radio
+                  {...controlProps('b')}
+                  sx={{
+                    color: 'postThemeB.main',
+                    '&.Mui-checked': { color: 'postThemeB.main' },
+                  }}
+                />
+                <Radio
+                  {...controlProps('c')}
+                  sx={{
+                    color: 'postThemeC.main',
+                    '&.Mui-checked': { color: 'postThemeC.main' },
+                  }}
+                />
+                <Radio
+                  {...controlProps('d')}
+                  sx={{
+                    color: 'postThemeD.main',
+                    '&.Mui-checked': { color: 'postThemeD.main' },
+                  }}
+                />
+                <Radio
+                  {...controlProps('e')}
+                  sx={{
+                    color: 'postThemeE.main',
+                    '&.Mui-checked': { color: 'postThemeE.main' },
+                  }}
+                />
+              </div>
+            </Grid>
+          </Grid>
+          <Box my={4} />
           <ReactMde
             value={content}
             onChange={(value) => setDataContent(value)}
