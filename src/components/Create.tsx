@@ -90,7 +90,9 @@ const Create: React.FC<{
             { title: title, content: content },
             {
               params: {
-                id: id,
+                sessionId: session?.user.id,
+                //idはpropsで受け取ったpostのid
+                postId: id,
               },
             },
           )

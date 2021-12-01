@@ -27,7 +27,7 @@ describe('/api/getAllPosts', () => {
       expect(mockRes.statusCode).toEqual(401);
     });
   });
-  describe('When user is not logged in.', () => {
+  describe('When user is logged in.', () => {
     let posts: Post[];
     beforeEach(async () => {
       posts = await createAllPosts(user.id);

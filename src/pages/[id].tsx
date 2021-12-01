@@ -35,7 +35,8 @@ const Post = () => {
     const getPost = async () => {
       const res = await axios.get('api/getPost', {
         params: {
-          id: router.query.id,
+          sessionId: session?.user.id,
+          postId: router.query.id,
         },
       });
       setPost(res.data);
@@ -56,7 +57,8 @@ const Post = () => {
       await axios
         .delete('/api/delete', {
           params: {
-            id: router.query.id,
+            sessionId: session?.user.id,
+            postId: router.query.id,
           },
         })
         .then((res) => {
