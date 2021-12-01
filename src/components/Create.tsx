@@ -46,10 +46,10 @@ const Create: React.FC<{
 
   //ローカルストレージから初期値を取り出す。
   useEffect(() => {
-    const titleValue = localStorage.getItem('postTitle');
-    titleValue && setTitle(JSON.parse(titleValue));
-    const contentValue = localStorage.getItem('postContent');
-    contentValue && setContent(JSON.parse(contentValue));
+    // const titleValue = localStorage.getItem('postTitle');
+    // titleValue && setTitle(JSON.parse(titleValue));
+    // const contentValue = localStorage.getItem('postContent');
+    // contentValue && setContent(JSON.parse(contentValue));
   }, []);
 
   //入力フォーム
