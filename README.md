@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# :house: Overview
+Welcome to my "Deep Memo" repository !<br>
+This product is currently under development. :construction_worker::construction_worker:
 
-First, run the development server:
+As the name suggests , "Deep Memo" is a memo app.
+This App enable you to take a note wahtever you want to record (ex. daily report, impressions about movies...) with Markdown.<br>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+You can available in "Deep Memo" following URL.<br>
+https://deep-app.vercel.app/login<br>
+<br />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<div align="center">
+<h1 align="center">:book: Deep Memo</h1>
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://user-images.githubusercontent.com/85671197/144169038-462cbe8a-2d66-4c9a-a2a9-63a7a330bd11.png" height="90px;" /></a>
+    <a href="https://vercel.com/"><img  height="100px;" alt="prisma" src="https://user-images.githubusercontent.com/85671197/144169049-aa6c2fad-1462-4a6f-8cd4-4619d33262cc.png">
+</a>
+  <a href="https://prisma.io/"><img  height="100px;" alt="prisma" src="https://user-images.githubusercontent.com/85671197/144168297-67eaf285-217e-4552-bf2e-4f753280369c.png">
+</a>
+  <a href="https://www.postgresql.org/"><img  height="100px;" alt="tailwindcss" src="https://user-images.githubusercontent.com/85671197/144169066-6ac735a9-4fb2-48dd-a4c4-198ad761efb8.png"></a>
+  <a href="https://mui.com/"><img  height="100px;" alt="daisyUI" src="https://user-images.githubusercontent.com/85671197/144169078-980aec78-62c2-4c88-9c91-c7d0d6f0c0ab.jpg"></a>
+</p>
+</div>
+<br />
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# :pencil2: Description
+**Next.js(API Routes) + Prisma + NextAuth.js** <br>
+This is one of the most prevailing choices in the development of full stack application！
+<br />
+<br />
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# :package: Package
+Please check 「package.json」and other files if you'd like further information.<br>
+- Next.js
+- Vercel
+- Typesctipt
+- Prisma
+- Postgress
+- Material UI <br>
+- Jest
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  
+ 
