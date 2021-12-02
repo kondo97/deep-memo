@@ -61,3 +61,7 @@
   transform: translate(-50%, -50%);
 }
 
+/* 表示・非表示 */
+.notVisible {
+  display: none;
+}
