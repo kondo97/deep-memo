@@ -40,8 +40,6 @@ describe('/api/getAllPosts', () => {
         body: {
           title: 'タイトル',
           content: 'コンテント',
-          rating: 1,
-          color: 'a',
         },
       });
       const mockRes = httpMocks.createResponse<NextApiResponse>();
