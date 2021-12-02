@@ -9,19 +9,19 @@ const theme = createTheme({
       main: '#808080',
     },
     postThemeA:{
-      main: '#69cc6F',
+      main: '#757575',
     },
     postThemeB:{
-      main: '#69cc6F',
+      main: '43a047',
     },
     postThemeC:{
-      main: '#69cc6F',
+      main: '#00acc1',
     },
     postThemeD:{
-      main: '#69cc6F',
+      main: '#fdd835',
     },
     postThemeE:{
-      main: '#69cc6F',
+      main: '#e53935',
     },
   },
   typography: {
