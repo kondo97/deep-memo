@@ -47,6 +47,11 @@
   top: 20px;
   right: 20px;
 }
+.childTopLeft {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
 
 /* 中央配置 */
 .fixCenter {
