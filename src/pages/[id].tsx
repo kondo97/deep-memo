@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import ReactStars from 'react-stars';
 import gfm from 'remark-gfm';
 import formatDate from './hooks/formatDate';
-import selectColor from './hooks/selectColor';
+import SelectColor from './hooks/selectColor';
 import Redirect from './hooks/useRedirect';
 import theme from 'src/color/Theme';
 import ArrowTop from 'src/components/ArrowTop';
@@ -53,7 +53,7 @@ const Post = () => {
   }, [id, router.query.id, session]);
 
   useEffect(() => {
-    setPostColor(selectColor(post[0]?.color));
+    setPostColor(SelectColor(post[0]?.color));
   }, [post]);
 
   const CustomButton = styled(Button)({

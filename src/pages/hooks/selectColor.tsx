@@ -1,6 +1,6 @@
 import theme from "src/color/Theme"
 
-const selectColor = (props: string) => {
+const useSelectColor = (props: string) => {
   let postColor
   if(props === 'a') return postColor = theme.palette.postThemeA
   if(props === 'b') return postColor = theme.palette.postThemeB
@@ -10,4 +10,4 @@ const selectColor = (props: string) => {
   return theme.palette.primary
 }
 
-export default selectColor
+export default useSelectColor

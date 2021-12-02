@@ -6,7 +6,7 @@ import ReactStars from 'react-stars';
 import removeMd from 'remove-markdown';
 import theme from 'src/color/Theme';
 import formatDate from 'src/pages/hooks/formatDate';
-import selectColor from 'src/pages/hooks/selectColor';
+import SelectColor from 'src/pages/hooks/selectColor';
 import turnCate from 'src/pages/hooks/turnCate';
 import styles from 'src/styles/Home.module.css';
 import { PaletteColor } from 'types/PaletteColor';
@@ -28,7 +28,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const [postColor, setPostColor] = useState<PaletteColor>(theme.palette.primary);
 
   useEffect(() => {
-    setPostColor(selectColor(post?.color));
+    setPostColor(SelectColor(post?.color));
   }, [post.color]);
 
   return (
