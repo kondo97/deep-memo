@@ -7,6 +7,7 @@ const useSelectColor = (props: string) => {
   if(props=== 'C') return postColor = theme.palette.postThemeC
   if(props === 'd') return postColor = theme.palette.postThemeD
   if(props === 'e') return postColor = theme.palette.postThemeE
+  return theme.palette.primary
 }
 
 export default useSelectColor

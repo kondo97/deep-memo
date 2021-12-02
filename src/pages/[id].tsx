@@ -9,6 +9,7 @@ import gfm from 'remark-gfm';
 import formatDate from './hooks/formatDate';
 import Redirect from './hooks/useRedirect';
 import selectColor from './hooks/useSelectColor';
+import theme from 'src/color/Theme';
 import ArrowTop from 'src/components/ArrowTop';
 import Create from 'src/components/Create';
 import CustomPaper from 'src/components/customUI/CustomPaper';
@@ -25,7 +26,7 @@ const Post = () => {
   const router = useRouter();
   const [id, setId] = useState<number>();
 
-  const [postColor, setPostColor] = useState<PaletteColor | undefined>();
+  const [postColor, setPostColor] = useState<PaletteColor>(theme.palette.primary);
 
   // パラメーターが利用になったらrouterをセットする。
   useEffect(() => {
@@ -91,17 +92,17 @@ const Post = () => {
           <CustomPaper
             elevation={3}
             className={styles.parent}
-            sx={{ border: `2px solid ${postColor?.main}` }}
+            sx={{ border: `2px solid ${postColor.main}` }}
           >
-             <Typography variant='subtitle2' className={styles.childTopLeft}>
-            <ReactStars
-              value={post[0]?.rating}
-              count={5}
-              size={24}
-              color2={'#ffd700'}
-              half={false}
-              edit={false}
-            />
+            <Typography variant='subtitle2' className={styles.childTopLeft}>
+              <ReactStars
+                value={post[0]?.rating}
+                count={5}
+                size={24}
+                color2={'#ffd700'}
+                half={false}
+                edit={false}
+              />
             </Typography>
             <Typography
               variant='subtitle1'

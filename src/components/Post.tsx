@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState }  from 'react';
 import ReactStars from 'react-stars';
 import removeMd from 'remove-markdown';
+import theme from 'src/color/Theme';
 import formatDate from 'src/pages/hooks/formatDate';
 import turnCate from 'src/pages/hooks/turnCate';
 import selectColor from 'src/pages/hooks/useSelectColor';
@@ -26,15 +27,15 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const goPostPage = () => {
     router.push(`${post.id}`);
   };
-  const [postColor, setPostColor] = useState<PaletteColor | undefined>()
+  const [postColor, setPostColor] = useState<PaletteColor>(theme.palette.primary)
   
   useEffect(() => {
-    setPostColor(selectColor(post.color))
+    setPostColor(selectColor(post?.color))
   }, [post.color])
 
   return (
     <>
-      <Item elevation={3} className={`${styles.parent} ${styles.pointer}`} onClick={goPostPage} sx={{border: `2px solid ${postColor?.main}`}}>
+      <Item elevation={3} className={`${styles.parent} ${styles.pointer}`} onClick={goPostPage} sx={{border: `2px solid ${postColor.main}`}}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Typography variant='subtitle1' align='left' sx={{ fontWeight: 600 }}>
