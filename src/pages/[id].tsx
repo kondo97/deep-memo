@@ -104,7 +104,7 @@ const Post = () => {
             />
             </Typography>
             <Typography
-              variant='subtitle2'
+              variant='subtitle1'
               sx={{ textAlign: 'right' }}
               className={styles.childTopRight}
             >
