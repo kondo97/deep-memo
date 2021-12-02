@@ -5,4 +5,6 @@ export type PostProps = {
   updatedAt: Date;
   id: number;
   title: string;
+  color: string,
+  rating: number
 };

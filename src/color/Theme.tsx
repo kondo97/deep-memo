@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import  { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -7,6 +7,21 @@ const theme = createTheme({
     },
     secondary: {
       main: '#808080',
+    },
+    postThemeA:{
+      main: '#69cc6F',
+    },
+    postThemeB:{
+      main: '#69cc6F',
+    },
+    postThemeC:{
+      main: '#69cc6F',
+    },
+    postThemeD:{
+      main: '#69cc6F',
+    },
+    postThemeE:{
+      main: '#69cc6F',
     },
   },
   typography: {

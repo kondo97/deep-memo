@@ -18,10 +18,11 @@ const Home = () => {
           id: session?.user.id
         }
       });
-      setPosts(res.data);
+      setPosts(res.data);   
     };
     session && getAllPosts();
   }, [session]);
+
 
   return (
     <>

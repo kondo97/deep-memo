@@ -36,10 +36,21 @@
   bottom: 0;
 }
 
+.childBottomLeft {
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+}
+
 .childTopRight {
   position: absolute;
   top: 20px;
   right: 20px;
+}
+.childTopLeft {
+  position: absolute;
+  top: 20px;
+  left: 30px;
 }
 
 /* 中央配置 */
@@ -49,3 +60,4 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+

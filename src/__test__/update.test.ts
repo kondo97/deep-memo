@@ -58,6 +58,8 @@ describe('/api/getAllPosts', () => {
           body: {
             title: 'タイトル2',
             content: 'コンテント2',
+            rating: 2,
+            color: 'b'
           },
         });
         const mockRes = httpMocks.createResponse<NextApiResponse>();
@@ -66,6 +68,8 @@ describe('/api/getAllPosts', () => {
         const res = JSON.parse(mockRes._getData());
         expect(res.title).toBe('タイトル2');
         expect(res.content).toBe('コンテント2');
+        expect(res.rating).toBe(2);
+        expect(res.color).toBe('b');
       });
     });
   });
