@@ -8,10 +8,10 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   if (!userId) return res.status(401).end('Please log in to view');
   const result = await prisma.post.create({
     data: {
-      title: title,
-      content: content,
-      rating: rating,
-      color: color,
+      title: title as string,
+      content: content as string | null,
+      rating: rating as number | null,
+      color: color as string | null,
       author: {
         connect: {
           id: userId,

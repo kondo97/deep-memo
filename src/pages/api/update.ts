@@ -12,10 +12,10 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       id: postId
     },
     data: {
-      title: title,
-      content: content,
-      rating: rating,
-      color: color
+      title: title as string,
+      content: content as string | null,
+      rating: rating as number | null,
+      color: color as string | null
     },
   });
   res.status(200).json(result);
