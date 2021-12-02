@@ -70,14 +70,14 @@ const Create: React.FC<{
   const [color, setColor] = useState<string | undefined>(props?.color);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(event.target.value);
+    setColor(event.target.value)
   };
 
   const controlProps = (item: string) => ({
     checked: color === item,
     onChange: handleChange,
     value: item,
-    name: 'color-radio-button-demo',
+    name: 'color-radio-button',
     inputProps: { 'aria-label': item },
   });
 
