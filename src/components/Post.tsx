@@ -7,7 +7,6 @@ import removeMd from 'remove-markdown';
 import theme from 'src/color/Theme';
 import formatDate from 'src/pages/hooks/formatDate';
 import turnCate from 'src/pages/hooks/turnCate';
-import SelectColor from 'src/pages/hooks/useSelectColor';
 import styles from 'src/styles/Home.module.css';
 import { PaletteColor } from 'types/PaletteColor';
 import { PostProps } from 'types/PostProps';
@@ -20,6 +19,15 @@ const Item = styled(Paper)(({ theme }) => ({
   marginTop: 30,
 }));
 
+const selectColor = (props: string) => {
+  if(props === 'a') return theme.palette.postThemeA
+  if(props === 'b') return theme.palette.postThemeB
+  if(props === 'C') return theme.palette.postThemeC
+  if(props === 'd') return theme.palette.postThemeD
+  if(props === 'e') return theme.palette.postThemeE
+  return theme.palette.primary
+}
+
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const router = useRouter();
   const goPostPage = () => {
@@ -28,7 +36,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const [postColor, setPostColor] = useState<PaletteColor>(theme.palette.primary);
 
   useEffect(() => {
-    setPostColor(SelectColor(post?.color));
+    setPostColor(selectColor(post?.color));
   }, [post.color]);
 
   return (

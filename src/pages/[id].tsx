@@ -8,7 +8,6 @@ import ReactStars from 'react-stars';
 import gfm from 'remark-gfm';
 import formatDate from './hooks/formatDate';
 import Redirect from './hooks/useRedirect';
-import SelectColor from './hooks/useSelectColor';
 import theme from 'src/color/Theme';
 import ArrowTop from 'src/components/ArrowTop';
 import Create from 'src/components/Create';
@@ -16,6 +15,16 @@ import CustomPaper from 'src/components/customUI/CustomPaper';
 import styles from 'src/styles/Home.module.css';
 import { PaletteColor } from 'types/PaletteColor';
 import { PostProps } from 'types/PostProps';
+
+
+const selectColor = (props: string) => {
+  if(props === 'a') return theme.palette.postThemeA
+  if(props === 'b') return theme.palette.postThemeB
+  if(props === 'C') return theme.palette.postThemeC
+  if(props === 'd') return theme.palette.postThemeD
+  if(props === 'e') return theme.palette.postThemeE
+  return theme.palette.primary
+}
 
 const Post = () => {
   Redirect();
@@ -53,7 +62,7 @@ const Post = () => {
   }, [id, router.query.id, session]);
 
   useEffect(() => {
-    setPostColor(SelectColor(post[0]?.color));
+    setPostColor(selectColor(post[0]?.color));
   }, [post]);
 
   const CustomButton = styled(Button)({
