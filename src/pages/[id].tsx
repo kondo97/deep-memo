@@ -23,7 +23,7 @@ const selectColor = (props: string) => {
   if(props === 'C') return theme.palette.postThemeC
   if(props === 'd') return theme.palette.postThemeD
   if(props === 'e') return theme.palette.postThemeE
-  return theme.palette.primary
+  return 
 }
 
 const Post = () => {
@@ -35,7 +35,7 @@ const Post = () => {
   const router = useRouter();
   const [id, setId] = useState<number>();
 
-  const [postColor, setPostColor] = useState<PaletteColor>(theme.palette.primary);
+  const [postColor, setPostColor] = useState<PaletteColor | undefined>();
 
   // パラメーターが利用になったらrouterをセットする。
   useEffect(() => {
@@ -101,7 +101,7 @@ const Post = () => {
           <CustomPaper
             elevation={3}
             className={styles.parent}
-            sx={{ border: `2px solid ${postColor.main}` }}
+            sx={{ border: `2px solid ${postColor?.main}` }}
           >
             <Typography variant='subtitle2' className={styles.childTopLeft}>
               <ReactStars

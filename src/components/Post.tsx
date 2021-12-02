@@ -25,7 +25,7 @@ const selectColor = (props: string) => {
   if(props === 'C') return theme.palette.postThemeC
   if(props === 'd') return theme.palette.postThemeD
   if(props === 'e') return theme.palette.postThemeE
-  return theme.palette.primary
+  return 
 }
 
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
@@ -33,7 +33,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const goPostPage = () => {
     router.push(`${post.id}`);
   };
-  const [postColor, setPostColor] = useState<PaletteColor>(theme.palette.primary);
+  const [postColor, setPostColor] = useState<PaletteColor | undefined>();
 
   useEffect(() => {
     setPostColor(selectColor(post?.color));
@@ -45,7 +45,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
         elevation={3}
         className={`${styles.parent} ${styles.pointer}`}
         onClick={goPostPage}
-        sx={{ border: `2px solid ${postColor.main}` }}
+        sx={{ border: `2px solid ${postColor?.main}` }}
       >
         <Grid container spacing={1}>
           <Grid item xs={12}>
