@@ -24,7 +24,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     case '作成日(昇順)':
       posts = await prisma.post.findMany({
         skip: Number(req.query.skip),
-        take: 2,
+        take: 8,
         orderBy: {
           createdAt: 'asc'
         },
@@ -36,7 +36,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     case 'スター(高い順)':
       posts = await prisma.post.findMany({
         skip: Number(req.query.skip),
-        take: 2,
+        take: 8,
         orderBy: {
           rating: 'desc'
         },
@@ -48,7 +48,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     case 'スター(低い順)':
       posts = await prisma.post.findMany({
         skip: Number(req.query.skip),
-        take: 2,
+        take: 8,
         orderBy: {
           rating: 'asc'
         },
@@ -60,7 +60,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     case '色別':
       posts = await prisma.post.findMany({
         skip: Number(req.query.skip),
-        take: 2,
+        take: 8,
         orderBy: {
           color: 'asc'
         },
