@@ -18,7 +18,7 @@ import Post from 'src/components/Post';
 import styles from 'src/styles/Home.module.css';
 import { PostProps } from 'types/PostProps';
 
-const displayCount = 12;
+const displayCount = 8;
 
 const Home = () => {
   Redirect();
