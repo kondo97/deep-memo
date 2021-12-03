@@ -12,7 +12,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     case '作成日(降順)':
       posts = await prisma.post.findMany({
         skip: Number(req.query.skip),
-        take: 2,
+        take: 12,
         orderBy: {
           createdAt: 'desc' 
         },

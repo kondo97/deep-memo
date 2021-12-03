@@ -12,7 +12,7 @@ const theme = createTheme({
       main: '#757575',
     },
     postThemeB:{
-      main: '43a047',
+      main: '#43a047',
     },
     postThemeC:{
       main: '#00acc1',
