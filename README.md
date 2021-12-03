@@ -26,7 +26,7 @@ https://deep-app.vercel.app/login<br>
 
 # :pencil2: Description
 **Next.js(API Routes) + Prisma + NextAuth.js** <br>
-This is one of the most prevailing choices in the development of full stack application！
+This is one of the most prevailing choices in the development of full stack application！<br>
 [NextAuth.js+API Routes+Prisma...。Firebase不要!?のフルスタックアプリケーション。](https://qiita.com/kondo97/items/e17e662d78c088960b35)
 <br />
 <br />
