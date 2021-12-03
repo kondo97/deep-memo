@@ -40,11 +40,13 @@ describe('/api/getAllPosts', () => {
         query: {
           id: user.id,
           skip: 0,
+          order: 'スター(昇順)'
         },
       });
       const mockRes = httpMocks.createResponse<NextApiResponse>();
       await handler(mockReq, mockRes);
       expect(mockRes.statusCode).toEqual(200);
+      console.log(JSON.parse(mockRes._getData()).posts.length);
       expect(JSON.parse(mockRes._getData()).posts[0].id).toBe(posts[0].id);
     });
   });

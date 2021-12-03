@@ -37,20 +37,6 @@ const Home = () => {
     setOrder(event.target.value as string);
   };
   const orderWords = ['作成日(降順)', '作成日(昇順)', 'スター(高い順)', 'スター(低い順)', '色別'];
-  
-  // 日付の昇順・降順
-  const [orderDate, setOrderDate] = useState('desc');
-  useEffect(() => {
-    order === '作成日(降順)' && setOrderDate('desc');
-    order === '作成日(昇順)' && setOrderDate('asc');
-  }, [order]);
-
-  //スターの昇順・降順
-  const [orderRating, setOrderRating] = useState('desc')
-  useEffect(() => {
-    order === 'スター(高い順)' && setOrderRating('desc')
-    order === 'スター(低い順)' && setOrderRating('asc');
-  }, [order])
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -58,8 +44,7 @@ const Home = () => {
         params: {
           id: session?.user.id,
           skip: (page - 1) * displayCount,
-          orderDate: orderDate,
-          orderRating: orderRating,
+          order: order
         },
       });
       setPosts(res.data.posts);
@@ -67,7 +52,7 @@ const Home = () => {
       setPagenationFlag(false);
     };
     session && getAllPosts();
-  }, [session, page, orderDate, orderRating]);
+  }, [session, page, order]);
 
   return (
     <>
